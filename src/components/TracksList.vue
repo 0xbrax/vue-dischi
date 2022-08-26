@@ -1,9 +1,15 @@
 <template>
-    <div>
-        <div v-for="(track, trackIndex) in tracksList" :key="trackIndex">
-            <TrackSingle />
+    <section class="d-flex d-flex justify-content-center align-items-center">
+        <div class="container">
+            <div class="row">
+
+                    <div class="col-2" v-for="(track, trackIndex) in tracksList" :key="trackIndex">
+                        <TrackSingle :track="track" />
+                    </div>
+
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -38,6 +44,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
+    section {
+        height: calc(100vh - 80px);
+    }
 </style>
