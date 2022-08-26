@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div class="text-center">
         <div class="img-wrapper">
             <img :src="track.poster" :alt="`${track.author} - ${track.title}`">
         </div>
 
-        <div>{{track.title}}</div>
-        <div>{{track.author}}</div>
-        <div>{{track.year}}</div>
+        <div class="text-white text-uppercase fw-bold mt-1">{{track.title}}</div>
+        <div class="text-white-50 mt-2">{{track.author}}</div>
+        <div class="text-white-50">{{track.year}}</div>
     </div>
 </template>
 
@@ -23,10 +23,12 @@ export default {
     .img-wrapper {
         width: 100%;
         aspect-ratio: 1 / 1;
+        max-height: 150px;
         overflow: hidden;
     }
 
     img {
+        height: 100%;
         object-fit: contain;
     }
 </style>

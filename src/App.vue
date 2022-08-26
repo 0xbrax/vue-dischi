@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import './styles/bootstrap-overwrite.scss';
   @import '~bootstrap/scss/bootstrap.scss';
+
   @import './styles/general.scss';
 </style>
