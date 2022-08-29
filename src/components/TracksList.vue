@@ -2,9 +2,9 @@
     <section class="d-flex justify-content-between align-items-center">
         <div class="container">
             <div class="row g-5">
-                    <div class="col-2" v-for="(track, trackIndex) in tracksList" :key="trackIndex">
-                        <TrackSingle class="track-card p-3" :track="track" />
-                    </div>
+                <div class="col-2" v-for="(track, trackIndex) in tracksList" :key="trackIndex">
+                    <TrackSingle class="track-card p-3" :track="track" />
+                </div>
             </div>
         </div>
 
@@ -35,10 +35,13 @@ export default {
 
             axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
 
                 that.tracksList = response.data.response;
                 that.isNowLoading = false;
+
+                //console.log(that.tracksList)
+                that.$emit('linkedTracksList', that.tracksList)
             })
             .catch(error => {
                 console.log(error);

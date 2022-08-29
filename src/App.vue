@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <TopBar />
-    <TracksList />
+    <TopBar :linkedTracksList="linkedTracksList" />
+    <TracksList @linkedTracksList="getLinkedTracksList" />
   </div>
 </template>
 
@@ -14,6 +14,17 @@ export default {
   components: {
     TopBar,
     TracksList
+  },
+  data() {
+    return {
+      linkedTracksList: []
+    }
+  },
+  methods: {
+    getLinkedTracksList(tracksList) {
+      console.log(tracksList)
+      this.linkedTracksList = tracksList;
+    }
   }
 }
 </script>
