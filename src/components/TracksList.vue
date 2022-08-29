@@ -24,6 +24,7 @@ export default {
         NowLoading
     },
     props: {
+        artistSelected: String,
         genreSelected: String
     },
     data() {
@@ -57,18 +58,13 @@ export default {
     },
     computed: {
         getFilteredTracksList() {
-            console.log(this.genreSelected)
-            if (this.genreSelected == undefined || this.genreSelected == 'Seleziona genere') {
-                console.log('aoooo')
+            if (this.genreSelected == 'Seleziona genere' && this.artistSelected == 'Seleziona artista') {
                 return this.tracksList
             } else {
-                console.log('bella ziiiii')
-                let filteredTracksList = this.tracksList.filter((track => {
-                    if (track.genre.includes(this.genreSelected)) {
-                        console.log('bella ziiii')
+                const filteredTracksList = this.tracksList.filter((track => {
+                    if (track.genre.includes(this.genreSelected) || track.author.includes(this.artistSelected)) {
                         return true
                     } else {
-                        console.log('oh nooooo')
                         return false
                     }
                 }));

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <TopBar :linkedTracksList="linkedTracksList" @genreSelected="getGenreSelected" />
-    <TracksList @linkedTracksList="getLinkedTracksList" :genreSelected="linkedGenre" />
+    <TopBar :linkedTracksList="linkedTracksList" @genreSelected="getGenreSelected" @artistSelected="getArtistSelected" />
+    <TracksList @linkedTracksList="getLinkedTracksList" :genreSelected="linkedGenre" :artistSelected="linkedArtist" />
   </div>
 </template>
 
@@ -18,16 +18,19 @@ export default {
   data() {
     return {
       linkedTracksList: [],
-      linkedGenre: ''
+      linkedArtist: 'Seleziona artista',
+      linkedGenre: 'Seleziona genere'
     }
   },
   methods: {
     getLinkedTracksList(tracksList) {
       this.linkedTracksList = tracksList;
     },
+    getArtistSelected(artist) {
+      this.linkedArtist = artist;
+    },
     getGenreSelected(genre) {
       this.linkedGenre = genre;
-      console.log('App vue linked genre: ' + this.linkedGenre)
     }
   }
 }
