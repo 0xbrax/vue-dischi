@@ -1,8 +1,8 @@
 <template>
-    <section class="d-flex justify-content-between align-items-center">
+    <section class="d-flex justify-content-center align-items-center">
         <div class="container">
-            <div class="row g-5">
-                <div class="col-2" v-for="(track, trackIndex) in tracksList" :key="trackIndex">
+            <div class="row g-5 justify-content-center">
+                <div class="col-2" v-for="(track, trackIndex) in getFilteredTracksList" :key="trackIndex">
                     <TrackSingle class="track-card p-3" :track="track" />
                 </div>
             </div>
@@ -22,6 +22,9 @@ export default {
     components: {
         TrackSingle,
         NowLoading
+    },
+    props: {
+        genreSelected: String
     },
     data() {
         return {
@@ -51,6 +54,27 @@ export default {
     },
     mounted() {
         this.getTracksLIst();
+    },
+    computed: {
+        getFilteredTracksList() {
+            console.log(this.genreSelected)
+            if (this.genreSelected == undefined || this.genreSelected == 'Seleziona genere') {
+                console.log('aoooo')
+                return this.tracksList
+            } else {
+                console.log('bella ziiiii')
+                let filteredTracksList = this.tracksList.filter((track => {
+                    if (track.genre.includes(this.genreSelected)) {
+                        console.log('bella ziiii')
+                        return true
+                    } else {
+                        console.log('oh nooooo')
+                        return false
+                    }
+                }));
+                return filteredTracksList
+            }
+        }
     }
 }
 </script>
