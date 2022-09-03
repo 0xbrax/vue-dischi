@@ -60,15 +60,35 @@ export default {
         getFilteredTracksList() {
             if (this.genreSelected == 'Seleziona genere' && this.artistSelected == 'Seleziona artista') {
                 return this.tracksList
-            } else {
-                const filteredTracksList = this.tracksList.filter((track => {
-                    if (track.genre.includes(this.genreSelected) || track.author.includes(this.artistSelected)) {
+            } else if (this.genreSelected !== 'Seleziona genere' && this.artistSelected !== 'Seleziona artista') {
+                const filteredGenArtList = this.tracksList.filter((track => {
+                    if (track.genre.includes(this.genreSelected) && track.author.includes(this.artistSelected)) {
                         return true
                     } else {
                         return false
                     }
                 }));
-                return filteredTracksList
+                return filteredGenArtList
+            } else if (this.genreSelected !== 'Seleziona genere') {
+                const filteredGenresList = this.tracksList.filter((track => {
+                    if (track.genre.includes(this.genreSelected) && this.artistSelected == 'Seleziona artista') {
+                        return true
+                    } else {
+                        return false
+                    }
+                }));
+                return filteredGenresList
+            } else if (this.artistSelected !== 'Seleziona artista') {
+                const filteredArtistsList = this.tracksList.filter((track => {
+                    if (track.author.includes(this.artistSelected) && this.genreSelected == 'Seleziona genere') {
+                        return true
+                    } else {
+                        return false
+                    }
+                }));
+                return filteredArtistsList
+            } else {
+                return this.tracksList
             }
         }
     }
